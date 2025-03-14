@@ -8,8 +8,14 @@ import streamlit as st
 
 import sqlite3 as db
 
+from hidden_pages.config_db import local_banco
+
+
+
 st.set_page_config(layout='wide')
 st.title('Pagina de configuração')
+
+
 
 
 
@@ -19,7 +25,7 @@ def Adicionar_meta(data_meta, turno01=0, turno02=0):
 
     meta_total =  turno01_num + turno02_num
 
-    conn = db.connect(r'C:\Users\pcp\OneDrive\#jeff\Dev\Analise_Producao\db\ttr.db')
+    conn = db.connect(local_banco)
     cursor = conn.cursor()
     cursor.execute("INSERT INTO metas(data_meta,turno01,turno02, meta_total) VALUES(?,?,?,?)", (data_meta, turno01, turno02, meta_total))
 
@@ -30,7 +36,7 @@ def Adicionar_meta(data_meta, turno01=0, turno02=0):
 
 
 def Listar_meta_db():
-    conn = db.connect(r'C:\Users\pcp\OneDrive\#jeff\Dev\Analise_Producao\db\ttr.db')    
+    conn = db.connect(local_banco)    
     
     query = "SELECT * FROM metas"
     df = pd.read_sql_query(query, conn)
@@ -41,7 +47,7 @@ def Listar_meta_db():
 
 def Editar_meta(id_meta, data_meta, turno01, turno02):
     meta_total = turno01 + turno02
-    conn = db.connect(r'C:\Users\pcp\OneDrive\#jeff\Dev\Analise_Producao\db\ttr.db')
+    conn = db.connect(local_banco)
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -55,7 +61,7 @@ def Editar_meta(id_meta, data_meta, turno01, turno02):
 
 
 def Excluir_meta(id_meta):
-    conn = db.connect(r'C:\Users\pcp\OneDrive\#jeff\Dev\Analise_Producao\db\ttr.db')
+    conn = db.connect(local_banco)
     cursor = conn.cursor()
 
     cursor.execute("DELETE FROM metas WHERE id = ?", (id_meta,))
