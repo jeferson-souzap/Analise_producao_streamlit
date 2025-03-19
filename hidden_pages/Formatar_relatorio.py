@@ -3,14 +3,14 @@ import os
 import datetime
 import sqlite3 as db
 
-local_banco = r'C:\Users\pcp\OneDrive\#jeff\Dev\Analise_Producao\db\ttr.db'
+local_banco = r'D:\#Mega\Jeferson - Dev\02 - Linguagens\Python\Analise_producao_streamlit\db\ttr.db'
 
 #-------------------------------------------------------------------------------
 # VARIAVEIS GLOBAIS
 
-LOCAL_EXCEL = r"C:\Users\pcp\OneDrive\#jeff\Dev\Analise_Producao\dados\relatorio_modelo_v01.xlsx"
-LOCAL_CSV = 'C:/Users/pcp/OneDrive/#jeff/Dev/Analise_Producao/dados/'
-LOCAL_TEMP = 'C:/Users/pcp/OneDrive/#jeff/Dev/Analise_Producao/dados/'
+LOCAL_EXCEL = r"D:\#Mega\Jeferson - Dev\02 - Linguagens\Python\Analise_producao_streamlit\dados\relatorio_modelo_v01.xlsx"
+LOCAL_CSV = 'D:/#Mega/Jeferson - Dev/02 - Linguagens/Python/Analise_producao_streamlit/dados'
+LOCAL_TEMP = 'D:/#Mega/Jeferson - Dev/02 - Linguagens/Python/Analise_producao_streamlit/dados'
 
 NOME_CSV_C = 'relatorio_intranet_concluido'
 NOME_CSV_P ='relatorio_intranet_pendente'
