@@ -8,7 +8,7 @@ import streamlit as st
 
 st.set_page_config(layout='wide')
 
-df = pd.read_csv(r'C:\Users\pcp\OneDrive\#jeff\Dev\Analise_Producao\dados\relatorio_intranet_concluido.csv')
+df = pd.read_csv(r'D:\#Mega\Jeferson - Dev\02 - Linguagens\Python\Analise_producao_streamlit\dados\relatorio_intranet_concluido.csv')
 
 df['Conclusão'] = pd.to_datetime(df['Conclusão'], errors='coerce')
 df['Entrega'] = pd.to_datetime(df['Entrada'], errors='coerce')
@@ -54,9 +54,6 @@ def Total_area_concluida_mes(data_minima, data_maxima):
     filtro_pedido_conclido = df[(df['Conclusão'] >= data_minima) & (df['Conclusão'] <= data_maxima)]
     total_pedido_concluido = filtro_pedido_conclido['Pedido Área'].sum()
     return total_pedido_concluido
-
-
-
 
 
 

@@ -16,6 +16,25 @@ CREATE TABLE IF NOT EXISTS metas (
 )
 """)
 
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS locais (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome_arquivo TEXT NOT NULL,
+    local_banco TEXT,
+    local_relatorios TEXT
+)
+""")
+
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS ultimo_update (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    data TEXT NOT NULL    
+)
+""")
+
+
 # Salvar e fechar conexão
 conn.commit()
 conn.close()
