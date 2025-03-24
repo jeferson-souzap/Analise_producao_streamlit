@@ -9,8 +9,8 @@ local_banco = r'D:\#Mega\Jeferson - Dev\02 - Linguagens\Python\Analise_producao_
 # VARIAVEIS GLOBAIS
 
 LOCAL_EXCEL = r"D:\#Mega\Jeferson - Dev\02 - Linguagens\Python\Analise_producao_streamlit\dados\relatorio_modelo_v01.xlsx"
-LOCAL_CSV = 'D:/#Mega/Jeferson - Dev/02 - Linguagens/Python/Analise_producao_streamlit/dados'
-LOCAL_TEMP = 'D:/#Mega/Jeferson - Dev/02 - Linguagens/Python/Analise_producao_streamlit/dados'
+LOCAL_CSV = 'D:/#Mega/Jeferson - Dev/02 - Linguagens/Python/Analise_producao_streamlit/dados/'
+LOCAL_TEMP = 'D:/#Mega/Jeferson - Dev/02 - Linguagens/Python/Analise_producao_streamlit/dados/'
 
 NOME_CSV_C = 'relatorio_intranet_concluido'
 NOME_CSV_P ='relatorio_intranet_pendente'

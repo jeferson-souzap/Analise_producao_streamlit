@@ -4,7 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pandas.tseries.offsets import MonthEnd
-from numerize.numerize import numerize
+#from numerize.numerize import numerize
+
 import streamlit as st
 import datetime as dt
 

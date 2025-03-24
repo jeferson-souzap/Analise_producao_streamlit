@@ -1,6 +1,6 @@
 import sqlite3 as db
 
-local_banco = r'C:\Users\pcp\OneDrive\#jeff\Dev\Analise_Producao\db\ttr.db'
+local_banco = r'D:\#Mega\Jeferson - Dev\02 - Linguagens\Python\Analise_producao_streamlit\db\ttr.db'
 
 conn = db.connect(local_banco)
 cursor = conn.cursor()
