@@ -3,7 +3,7 @@ import os
 import datetime
 import sqlite3 as db
 
-local_banco = r'D:\#Mega\Jeferson - Dev\02 - Linguagens\Python\Analise_producao_streamlit\db\ttr.db'
+local_banco = r'D:\#Mega\Jeferson - Dev\02 - Linguagens\Python\Analise_producao_streamlit\db\data_base.db'
 
 #-------------------------------------------------------------------------------
 # VARIAVEIS GLOBAIS
@@ -102,6 +102,7 @@ def Formatando_df_forno(nome_aba='relatorio_forno'):
          df_forno = pd.read_csv(destino_prod_forno)
 
     return df_forno
+
 
 def main():
     df_concluido = Formatando_df_concluido('relatorio_intranet_concluido')
