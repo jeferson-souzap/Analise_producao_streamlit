@@ -4,8 +4,11 @@ import numpy as np
 from datetime import datetime
 import locale 
 from hidden_pages.config_db import local_banco
+from pages.Graficos import prod_mes_servico
 
 #-----------------------------------------------------------
+#CONFIGURAÇÃO DATAFRAME
+
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
 destino_concluido = r"D:\#Mega\Jeferson - Dev\02 - Linguagens\Python\Analise_producao_streamlit\dados\relatorio_intranet_concluido.csv"
@@ -23,14 +26,12 @@ df_concluido['ano_n'] = df_concluido['Conclusão'].dt.year
 
 
 #-------------------------------------------------------------------------------
-
-# Configuração da página
+#CONFIGURAÇÃO PAGINA
 st.set_page_config(layout='wide', page_title='Inicio', page_icon='🏠')
 data_atual = datetime.now()
 
-
-
 #-------------------------------------------------------------------------------
+#FUNÇÕES
 @st.cache_data
 def total_concluido(mes=3, ano=2025):   
     
@@ -47,9 +48,8 @@ def total_concluido(mes=3, ano=2025):
     return df_prod_dia.values[0]
 
 
-
 #-------------------------------------------------------------------------------
-#Sidebar
+#SIDEBAR 
 
 mes_prod = data_atual.month
 ano_prod = data_atual.year
@@ -57,24 +57,33 @@ ano_prod = data_atual.year
 mes_prod = st.sidebar.selectbox('Selecione o mês', df_concluido['mes_n'].unique())
 ano_prod = st.sidebar.selectbox('Selecione o mês', df_concluido['ano_n'].unique())
 
-
 #-------------------------------------------------------------------------------
 
-col1, col2, col3, col4, col5 = st.columns(5, vertical_alignment='top')
+col1, col2, col3, col4 = st.columns(4)
+
 
 with col1:
     st.info(f'PRODUÇÃO TOTAL MÊS {mes_prod}')
 
     num_producao = total_concluido(mes_prod, ano_prod)
     num_formatado = locale.format_string("%.2f", num_producao, grouping=True)
-    st.metric(label='', value=num_formatado)
+    st.metric(label='', value=num_formatado, border=True, )
 
 with col2:
     st.info('Total Engenharia')
+    col_m01, col_m02 = st.columns(2, border=True)
+    
+    
+    with col_m01:
+        st.metric(label='PADRÃO', value=10)
+    with col_m02:
+        st.metric(label='ENGENHARIA', value=18)
 
 with col3:
-    st.info('Total Padrão')
+    st.info('Melhor Mês')
 
 with col4:
-    st.info('Total Atrasados')
+    st.info('Pior Mês')
 
+
+st.divider()

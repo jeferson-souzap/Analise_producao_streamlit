@@ -45,8 +45,6 @@ df_forno = pd.read_csv(localdf_forno)
 df_forno['Data'] = pd.to_datetime(df_forno['Data'], errors='coerce')
 df_forno['data2'] = pd.to_datetime(df_forno['data2'], errors='coerce')
 
-
-
 df_concluido['dia_n'] = df_concluido['Conclusão'].dt.day
 df_concluido['mes_n'] = df_concluido['Conclusão'].dt.month
 df_concluido['ano_n'] = df_concluido['Conclusão'].dt.year
@@ -75,6 +73,8 @@ def producao_forno():
     df_resumo_total01 = pd.merge(df_resumo_concluido, df_resumo_pendente, on='Data', how='outer')
     df_resumo_total01.fillna(0, inplace=True)
 
+    df_resumo_total01['Data'] = pd.to_datetime(df_resumo_total01['Data'], errors='coerce')
+
     df_resumo_total02 = pd.merge(df_resumo_total01, df_resumo_forno, on='Data', how='outer')
     df_resumo_total02.fillna(0, inplace=True)
 
@@ -85,19 +85,57 @@ def producao_forno():
 
     return df_resumo_total02
 
+#---------------------------------------------------------------------------
 
-col01, col02 = st.columns(2, border=True)
-with col01:
-    mes = st.number_input('Informe o Mês:', min_value=1, max_value=12, value=1)
-with col02:
-    ano = st.number_input('Informe o Ano: ', min_value=2024, value=2025)
+def prod_mes_servico():
+    pd_concluido_mes_serv01 = df_concluido[['dia_n', 'mes_n', 'ano_n', 'tipo_servico', 'Pedido Área']]
+    pd_concluido_mes_serv02 = pd_concluido_mes_serv01.groupby(['mes_n', 'tipo_servico'])['Pedido Área'].sum().reset_index()
+    
+    fig04, ax = plt.subplots(figsize=(largura_grafico, altura_grafico))
+    #pd_concluido_mes_serv02.plot(x='mes_n', y=['tipo_servico', 'Pedido Área'], kind='bar', ax=ax, stacked=True)
+    pd_concluido_mes_serv02.groupby(['mes_n', 'tipo_servico'])['Pedido Área'].sum().unstack().plot(
+            kind='bar', 
+            ax=ax,
+            color=['skyblue', 'orange']
+    )
+    
+    plt.title(f'PRODUÇÃO POR MÊS E SERVIÇO (m²) - {mes}/{ano}', fontsize=16)
 
+    for p in ax.patches:
+            ax.annotate(
+                f'{p.get_height():.2f}',  # Texto (valor da barra)
+                (p.get_x() + p.get_width() / 2, p.get_height()),  # Posição (x, y)
+                ha='center',  # Alinhamento horizontal
+                va='bottom',  # Alinhamento vertical
+                fontsize=10,  # Tamanho da fonte
+                color='black',  # Cor do texto
+                xytext=(0, 5),  # Deslocamento do texto em relação à posição
+                textcoords='offset points'  # Sistema de coordenadas do deslocamento
+            )
 
+    
+    plt.tight_layout()
+    st.pyplot(fig04)
+
+#--
+
+mes = st.sidebar.selectbox('Selecione o mês', df_concluido['mes_n'].unique())
+ano = st.sidebar.selectbox('Selecione o mês', df_concluido['ano_n'].unique())
+
+#mes = st.number_input('Informe o Mês:', min_value=1, max_value=12, value=1)
+#ano = st.number_input('Informe o Ano: ', min_value=2024, value=2025)
+
+#---------------------------------------------------------------------------
 #chave = st.checkbox('Teste')
 #st.write(chave)
 
+#---------------------------------------------------------------------------
 
-with st.expander('Forno Vs Entrada Pedido (Pendentes + Concluidos)', expanded=False):
+st.header('Gráficos de Produção', )
+
+
+
+with st.expander('Forno Vs Entrada Pedido (Pendentes + Concluidos)', expanded=True):
     st.markdown('**PRODUÇÃO FORNO VS ENTRADA DE PEDIDO***')    
     
     df_resumo_total02 = producao_forno()
@@ -120,7 +158,7 @@ with st.expander('Forno Vs Entrada Pedido (Pendentes + Concluidos)', expanded=Fa
             va='bottom',  # Alinhamento vertical
             fontsize=10,  # Tamanho da fonte
             color='black',  # Cor do texto
-            xytext=(0, 5),  # Deslocamento do texto em relação à posição
+            xytext=(0, 6),  # Deslocamento do texto em relação à posição
             textcoords='offset points'  # Sistema de coordenadas do deslocamento
         )
 
@@ -132,9 +170,7 @@ with st.expander('Forno Vs Entrada Pedido (Pendentes + Concluidos)', expanded=Fa
 
 #----------------------------------------------------------------------------------------
 
-
-
-with st.expander('Graficos de produção', expanded=False):
+with st.expander('Graficos de produção', expanded=True):
     st.markdown('***Gráficos informativos de produção***')
 
     mes = 3
