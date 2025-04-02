@@ -18,12 +18,12 @@ st.set_page_config(layout='wide')
 st.title('Pagina de configuração')
 
 
+
+
 def Adicionar_meta(data_meta, turno01=0, turno02=0):    
     turno01_num = int(turno01) if turno01 else 0
     turno02_num = int(turno02) if turno02 else 0
-
     meta_total =  turno01_num + turno02_num
-
     conn = db.connect(local_banco)
     cursor = conn.cursor()
     cursor.execute("INSERT INTO metas(data_meta,turno01,turno02, meta_total) VALUES(?,?,?,?)", (data_meta, turno01, turno02, meta_total))
