@@ -43,7 +43,7 @@ data_atual = datetime.now()
 
 
 largura_grafico = 18
-altura_grafico = 7
+altura_grafico = 6
 
 
 
@@ -93,6 +93,8 @@ ano_prod = data_atual.year
 mes_prod = st.sidebar.selectbox('Selecione o mês', df_concluido['mes_n'].unique())
 ano_prod = st.sidebar.selectbox('Selecione o mês', df_concluido['ano_n'].unique())
 
+organizar_graf = st.sidebar.checkbox('Graficos Lado a Lado')
+
 #-------------------------------------------------------------------------------
 
 col1, col2, col3 = st.columns(3)
@@ -118,50 +120,81 @@ with col3:
     st.metric(label='', value=num_padrao_format, border=True)
 
 
-st.divider()
 
-df_prod_concluido = df_concluido[['dia_n', 'mes_n', 'ano_n', 'tipo_servico', 'Pedido Área']]
-prod_dia_filtro = df_prod_concluido[(df_prod_concluido['mes_n']== mes_prod) & (df_prod_concluido['ano_n']== ano_prod)]
-df_prod_dia = prod_dia_filtro.groupby('dia_n')['Pedido Área'].sum()
-#df_prod_dia
 
-fig02, ax = plt.subplots(figsize=(19, 6))
-df_prod_dia.plot(kind='bar', ax=ax, color='skyblue')
 
-plt.title(F'PRODUÇÃO TOTAL POR DIA (m²) - {mes_prod}/{ano_prod}', fontsize=16)
 
-for p in ax.patches:
-    ax.annotate(
-        f'{p.get_height():.2f}',  # Texto (valor da barra)
-        (p.get_x() + p.get_width() / 2, p.get_height()),  # Posição (x, y)
-        ha='center',  # Alinhamento horizontal
-        va='bottom',  # Alinhamento vertical
-        fontsize=10,  # Tamanho da fonte
-        color='black',  # Cor do texto
-        xytext=(0, 5),  # Deslocamento do texto em relação à posição
-        textcoords='offset points'  # Sistema de coordenadas do deslocamento
-    )
+if organizar_graf:
+    graf01, graf02 = st.columns(2)
+    with graf01:
+        df_prod_concluido = df_concluido[['dia_n', 'mes_n', 'ano_n', 'tipo_servico', 'Pedido Área']]
+        prod_dia_filtro = df_prod_concluido[(df_prod_concluido['mes_n']== mes_prod) & (df_prod_concluido['ano_n']== ano_prod)]
+        df_prod_dia = prod_dia_filtro.groupby('dia_n')['Pedido Área'].sum()
+        #df_prod_dia
 
-    
-plt.tight_layout()
-st.pyplot(fig02)
+        fig02, ax = plt.subplots(figsize=(19, 6))
+        df_prod_dia.plot(kind='bar', ax=ax, color='skyblue')
 
-st.divider()
+        plt.title(F'PRODUÇÃO TOTAL POR DIA (m²) - {mes_prod}/{ano_prod}', fontsize=16)
 
-pd_concluido_mes_serv01 = df_concluido[['dia_n', 'mes_n', 'ano_n', 'tipo_servico', 'Pedido Área']]
-pd_concluido_mes_serv02 = pd_concluido_mes_serv01.groupby(['mes_n', 'tipo_servico'])['Pedido Área'].sum().reset_index()
+        for p in ax.patches:
+            ax.annotate(
+                f'{p.get_height():.2f}',  # Texto (valor da barra)
+                (p.get_x() + p.get_width() / 2, p.get_height()),  # Posição (x, y)
+                ha='center',  # Alinhamento horizontal
+                va='bottom',  # Alinhamento vertical
+                fontsize=10,  # Tamanho da fonte
+                color='black',  # Cor do texto
+                xytext=(0, 5),  # Deslocamento do texto em relação à posição
+                textcoords='offset points'  # Sistema de coordenadas do deslocamento
+            )
 
-fig04, ax = plt.subplots(figsize=(largura_grafico, altura_grafico))
-#pd_concluido_mes_serv02.plot(x='mes_n', y=['tipo_servico', 'Pedido Área'], kind='bar', ax=ax, stacked=True)
-pd_concluido_mes_serv02.groupby(['mes_n', 'tipo_servico'])['Pedido Área'].sum().unstack().plot(
-        kind='bar', 
-        ax=ax,
-        color=['skyblue', 'orange']
-)
+            
+        plt.tight_layout()
+        st.pyplot(fig02)
 
-plt.title(f'PRODUÇÃO POR MÊS E SERVIÇO (m²) - {mes_prod}/{ano_prod}', fontsize=16)
+    with graf02:
+        pd_concluido_mes_serv01 = df_concluido[['dia_n', 'mes_n', 'ano_n', 'tipo_servico', 'Pedido Área']]
+        pd_concluido_mes_serv02 = pd_concluido_mes_serv01.groupby(['mes_n', 'tipo_servico'])['Pedido Área'].sum().reset_index()
 
-for p in ax.patches:
+        fig04, ax = plt.subplots(figsize=(largura_grafico, altura_grafico))
+        #pd_concluido_mes_serv02.plot(x='mes_n', y=['tipo_servico', 'Pedido Área'], kind='bar', ax=ax, stacked=True)
+        pd_concluido_mes_serv02.groupby(['mes_n', 'tipo_servico'])['Pedido Área'].sum().unstack().plot(
+                kind='bar', 
+                ax=ax,
+                color=['skyblue', 'orange']
+        )
+
+        plt.title(f'PRODUÇÃO POR MÊS E SERVIÇO (m²) - {mes_prod}/{ano_prod}', fontsize=16)
+
+        for p in ax.patches:
+                ax.annotate(
+                    f'{p.get_height():.2f}',  # Texto (valor da barra)
+                    (p.get_x() + p.get_width() / 2, p.get_height()),  # Posição (x, y)
+                    ha='center',  # Alinhamento horizontal
+                    va='bottom',  # Alinhamento vertical
+                    fontsize=10,  # Tamanho da fonte
+                    color='black',  # Cor do texto
+                    xytext=(0, 5),  # Deslocamento do texto em relação à posição
+                    textcoords='offset points'  # Sistema de coordenadas do deslocamento
+                )
+
+
+        plt.tight_layout()
+        st.pyplot(fig04)
+
+else:
+    df_prod_concluido = df_concluido[['dia_n', 'mes_n', 'ano_n', 'tipo_servico', 'Pedido Área']]
+    prod_dia_filtro = df_prod_concluido[(df_prod_concluido['mes_n']== mes_prod) & (df_prod_concluido['ano_n']== ano_prod)]
+    df_prod_dia = prod_dia_filtro.groupby('dia_n')['Pedido Área'].sum()
+    #df_prod_dia
+
+    fig02, ax = plt.subplots(figsize=(19, 6))
+    df_prod_dia.plot(kind='bar', ax=ax, color='skyblue')
+
+    plt.title(F'PRODUÇÃO TOTAL POR DIA (m²) - {mes_prod}/{ano_prod}', fontsize=16)
+
+    for p in ax.patches:
         ax.annotate(
             f'{p.get_height():.2f}',  # Texto (valor da barra)
             (p.get_x() + p.get_width() / 2, p.get_height()),  # Posição (x, y)
@@ -173,8 +206,43 @@ for p in ax.patches:
             textcoords='offset points'  # Sistema de coordenadas do deslocamento
         )
 
+        
+    plt.tight_layout()
+    st.pyplot(fig02)
 
-plt.tight_layout()
-st.pyplot(fig04)
+
+
+    pd_concluido_mes_serv01 = df_concluido[['dia_n', 'mes_n', 'ano_n', 'tipo_servico', 'Pedido Área']]
+    pd_concluido_mes_serv02 = pd_concluido_mes_serv01.groupby(['mes_n', 'tipo_servico'])['Pedido Área'].sum().reset_index()
+
+    fig04, ax = plt.subplots(figsize=(largura_grafico, altura_grafico))
+    #pd_concluido_mes_serv02.plot(x='mes_n', y=['tipo_servico', 'Pedido Área'], kind='bar', ax=ax, stacked=True)
+    pd_concluido_mes_serv02.groupby(['mes_n', 'tipo_servico'])['Pedido Área'].sum().unstack().plot(
+            kind='bar', 
+            ax=ax,
+            color=['skyblue', 'orange']
+    )
+
+    plt.title(f'PRODUÇÃO POR MÊS E SERVIÇO (m²) - {mes_prod}/{ano_prod}', fontsize=16)
+
+    for p in ax.patches:
+            ax.annotate(
+                f'{p.get_height():.2f}',  # Texto (valor da barra)
+                (p.get_x() + p.get_width() / 2, p.get_height()),  # Posição (x, y)
+                ha='center',  # Alinhamento horizontal
+                va='bottom',  # Alinhamento vertical
+                fontsize=10,  # Tamanho da fonte
+                color='black',  # Cor do texto
+                xytext=(0, 5),  # Deslocamento do texto em relação à posição
+                textcoords='offset points'  # Sistema de coordenadas do deslocamento
+            )
+
+
+    plt.tight_layout()
+    st.pyplot(fig04)
+
+
+
+
 
 
