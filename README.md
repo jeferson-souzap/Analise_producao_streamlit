@@ -4,6 +4,9 @@ Este projeto envolve a criação de um dashboard para prever a compra de materia
 A análise é segmentada por mês, permitindo identificar tendências de produção.
 Com base nesses dados, foram feitas previsões.
 
+![Gráficos Home](img/home01.png)
+
+
 ### 🎯 Objetivo do Projeto
 
 O objetivo principal deste projeto é criar um dasboard que forneça os numeos de produção por mês e por serviço.
