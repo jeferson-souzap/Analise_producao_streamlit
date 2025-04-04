@@ -1,8 +1,8 @@
-# 🏭 Dashboard de Produção Industrial: 202025
+# 🏭 Dashboard de Produção Industrial
 
 Este projeto envolve a criação de um dashboard para prever a compra de material e estoque minimo.
 A análise é segmentada por mês, permitindo identificar tendências de produção.
-Com base nesses dados, foram feitas previsões para os anos de 2024 a 2028.
+Com base nesses dados, foram feitas previsões.
 
 
 ## 📑 Sumário
@@ -34,41 +34,41 @@ O objetivo principal deste projeto é criar um dasboard que forneça os numeos d
 
 ## Funcionalidades
 
-- **Página Inicial**: Apresenta totais e gráficos principais da produção filtrados por mês e ano.
+- **Página Inicial**: Apresenta totais e gráficos principais da produção filtrados por mês e ano.
 - **Configuração**:
-  - Definição de indicadores de meta.
-  - Salvamento da meta praticada.
+  - Definição de indicadores de meta.
+  - Salvamento da meta praticada.
 - **Gráficos**:
-  - Produção mensal.
-  - Entrada de pedidos vs. produção do forno.
-  - Produção do forno por mês.
-  - Tipos de vidro produzidos mensalmente.
-- **Previsão (BETA)**: Projeção de vendas e estoque baseada em dados históricos disponíveis.
-- **Ordem de Produção**: Permite montar a programação da fábrica seguindo conceitos de rota e/ou data.
+  - Produção mensal.
+  - Entrada de pedidos vs. produção do forno.
+  - Produção do forno por mês.
+  - Tipos de vidro produzidos mensalmente.
+- **Previsão (BETA)**: Projeção de vendas e estoque baseada em dados históricos disponíveis.
+- **Ordem de Produção**: Permite montar a programação da fábrica seguindo conceitos de rota e/ou data.
 
 ## Tecnologias Utilizadas
 
-- [Streamlit](https://streamlit.io/)
+- [Streamlit](https://streamlit.io/)
 - Python
-- Bibliotecas para análise de dados e visualização
+- Bibliotecas para análise de dados e visualização
 
 ## Instalação
 
-1. Clone o repositório:
+1. Clone o repositório:
 
    ```bash
    git clone https://github.com/jeferson-souzap/Analise_producao_streamlit.git
    ```
 
 
-2. Navegue até o diretório do projeto:
+2. Navegue até o diretório do projeto:
 
    ```bash
    cd Analise_producao_streamlit
    ```
 
 
-3. Crie um ambiente virtual (opcional, mas recomendado):
+3. Crie um ambiente virtual (opcional, mas recomendado):
 
    ```bash
    python -m venv venv
@@ -76,7 +76,7 @@ O objetivo principal deste projeto é criar um dasboard que forneça os numeos d
    ```
 
 
-4. Instale as dependências:
+4. Instale as dependências:
 
    ```bash
    pip install -r requeriment.txt
@@ -85,22 +85,10 @@ O objetivo principal deste projeto é criar um dasboard que forneça os numeos d
 
 ## Uso
 
-Para iniciar a aplicação:
+Para iniciar a aplicação:
 
 
 ```bash
 streamlit run Home.py
 ```
-
 
-Acesse o aplicativo no navegador através do endereço fornecido pelo Streamlit.
-
-## Contribuição
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
-
-## Licença
-
-Este projeto está licenciado sob a licença MIT.
-
-Essa estrutura fornecerá uma visão clara e detalhada do seu projeto, facilitando o entendimento e a colaboração de outros desenvolvedores. 
