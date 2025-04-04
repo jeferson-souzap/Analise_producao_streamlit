@@ -4,19 +4,14 @@ Este projeto envolve a criação de um dashboard para prever a compra de materia
 A análise é segmentada por mês, permitindo identificar tendências de produção.
 Com base nesses dados, foram feitas previsões.
 
-
-## 📑 Sumário
-
-
 ### 🎯 Objetivo do Projeto
-O objetivo principal deste projeto é criar um dasboard que forneça os numeos de produção por mês e por serviço.
 
+O objetivo principal deste projeto é criar um dasboard que forneça os numeos de produção por mês e por serviço.
 
 1. 📊 **Qual o total de produção por mês?**
 2. 🕒 **Qual o total de produção por situação?**
 3. 🔮 **Qual a qantidade prevista de vender no próximo mês?**
 4. ❗ **Qual Estoque necessário "IDEAL" para o próximo mês?**
-
 
 ### **🛠️ Tecnologias e Ferramentas Usadas no Projeto**  
 
@@ -30,7 +25,6 @@ O objetivo principal deste projeto é criar um dasboard que forneça os numeos d
 8. **[Openpyxl](https://openpyxl.readthedocs.io/)** → Leitura e escrita de arquivos Excel (.xlsx).  
 9. **[Datetime](https://docs.python.org/3/library/datetime.html)** → Manipulação de datas e horários.  
 10. **[OS (Módulo do Python)](https://docs.python.org/3/library/os.html)** → Gerenciamento de diretórios e arquivos.  
-
 
 ## Funcionalidades
 
@@ -59,14 +53,12 @@ O objetivo principal deste projeto é criar um dasboard que forneça os numeos d
    ```bash
    git clone https://github.com/jeferson-souzap/Analise_producao_streamlit.git
    ```
-
 
 2. Navegue até o diretório do projeto:
 
    ```bash
    cd Analise_producao_streamlit
    ```
-
 
 3. Crie um ambiente virtual (opcional, mas recomendado):
 
@@ -74,21 +66,17 @@ O objetivo principal deste projeto é criar um dasboard que forneça os numeos d
    python -m venv venv
    source venv/bin/activate  # No Windows: venv\Scripts\activate
    ```
-
 
 4. Instale as dependências:
 
    ```bash
    pip install -r requeriment.txt
    ```
-
 
 ## Uso
 
 Para iniciar a aplicação:
 
-
 ```bash
 streamlit run Home.py
 ```
-
