@@ -1,4 +1,4 @@
-# 🏭 Dashboard de Produção Industrial
+# Dashboard de Produção Industrial
 
 Este projeto envolve a criação de um dashboard para prever a compra de material e estoque minimo.
 A análise é segmentada por mês, permitindo identificar tendências de produção.
@@ -7,16 +7,16 @@ Com base nesses dados, foram feitas previsões.
 ![Gráficos Home](img/home01.png)
 
 
-### 🎯 Objetivo do Projeto
+### Objetivo do Projeto
 
 O objetivo principal deste projeto é criar um dasboard que forneça os numeos de produção por mês e por serviço.
 
-1. 📊 **Qual o total de produção por mês?**
-2. 🕒 **Qual o total de produção por situação?**
-3. 🔮 **Qual a qantidade prevista de vender no próximo mês?**
-4. ❗ **Qual Estoque necessário "IDEAL" para o próximo mês?**
+1. **Qual o total de produção por mês?**
+2. **Qual o total de produção por situação?**
+3. **Qual a qantidade prevista de vender no próximo mês?**
+4. **Qual Estoque necessário "IDEAL" para o próximo mês?**
 
-### **🛠️ Tecnologias e Ferramentas Usadas no Projeto**  
+### ** Tecnologias e Ferramentas Usadas no Projeto**  
 
 1. **[Python](https://www.python.org/)** → Linguagem principal do projeto.  
 2. **[Streamlit](https://streamlit.io/)** → Framework para criar dashboards e aplicativos interativos.  
